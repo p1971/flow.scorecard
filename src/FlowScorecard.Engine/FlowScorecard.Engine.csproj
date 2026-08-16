@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Authors>Pete Robinson</Authors>
+    <Description>A typed, fluent scorecard engine for .NET.</Description>
+    <Product>FlowScorecard</Product>
+    <PackageId>FlowScorecard.Engine</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/p1971/flow.scorecard</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/p1971/flow.scorecard</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>scorecard;scoring;rules;decisioning</PackageTags>
+    <NeutralLanguage>en-GB</NeutralLanguage>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Tasks.Git" PrivateAssets="all" Condition="Exists('$(MSBuildProjectDirectory)/../../.git/HEAD')" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" Condition="Exists('$(MSBuildProjectDirectory)/../../.git/HEAD')" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="FlowScorecard.Engine.UnitTests" />
+  </ItemGroup>
+</Project>

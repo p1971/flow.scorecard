@@ -1,0 +1,7 @@
+is_global = true
+
+# Prefer explicit names where they improve public result construction.
+dotnet_diagnostic.IDE0037.severity = silent
+
+# The fluent factory mirrors FlowRules' established generic builder API.
+dotnet_diagnostic.CA1000.severity = none

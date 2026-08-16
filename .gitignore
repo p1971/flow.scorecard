@@ -1,0 +1,11 @@
+[Bb]in/
+[Oo]bj/
+[Tt]est[Rr]esults/
+[Aa]rtifacts/
+.vs/
+.idea/
+*.user
+*.suo
+*.nupkg
+*.snupkg
+coverage.*

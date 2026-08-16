@@ -3,6 +3,8 @@ name: flowscorecard_build
 on:
   push:
   pull_request:
+  release:
+    types: [published]
 
 env:
   BuildConfiguration: Release
@@ -25,6 +27,9 @@ jobs:
       - name: Determine semantic version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v4.4.2
+        with:
+          useConfigFile: true
+          configFilePath: src/GitVersion.yml
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -75,35 +80,25 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: unit
 
-      - name: Resolve package version
-        id: package-version
-        shell: bash
-        run: |
-          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
-            version="${{ steps.gitversion.outputs.MajorMinorPatch }}"
-          else
-            version="${{ steps.gitversion.outputs.FullSemVer }}"
-            version="${version%%+*}"
-          fi
-          echo "version=${version}" >> "${GITHUB_OUTPUT}"
-
-      - name: Pack
+      - name: Pack release
+        if: github.event_name == 'release'
         run: >-
           dotnet pack src/FlowScorecard.Engine/FlowScorecard.Engine.csproj
           --configuration ${{ env.BuildConfiguration }}
           --no-build
           --include-symbols
           --output "${{ runner.temp }}/nuget"
-          -p:PackageVersion=${{ steps.package-version.outputs.version }}
+          -p:PackageVersion=${{ steps.gitversion.outputs.SemVer }}
 
-      - name: Upload packages
+      - name: Upload release packages
+        if: github.event_name == 'release'
         uses: actions/upload-artifact@v4
         with:
           name: nuget-packages
           path: ${{ runner.temp }}/nuget/*
 
   publish:
-    if: github.event_name == 'push'
+    if: github.event_name == 'release'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -113,16 +108,7 @@ jobs:
           name: nuget-packages
           path: nuget-packages
 
-      - name: Push prerelease packages to GitHub Packages
-        if: github.ref != 'refs/heads/main'
-        run: >-
-          dotnet nuget push "nuget-packages/*.nupkg"
-          --source "https://nuget.pkg.github.com/p1971/index.json"
-          --skip-duplicate
-          --api-key "${{ secrets.GITHUB_TOKEN }}"
-
       - name: Push release packages to NuGet
-        if: github.ref == 'refs/heads/main'
         run: >-
           dotnet nuget push "nuget-packages/*.nupkg"
           --source "https://api.nuget.org/v3/index.json"

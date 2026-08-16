@@ -7,6 +7,6 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FlowScorecard.Engine\FlowScorecard.Engine.csproj" />
+    <ProjectReference Include="..\Flow.Scorecard\Flow.Scorecard.csproj" />
   </ItemGroup>
 </Project>

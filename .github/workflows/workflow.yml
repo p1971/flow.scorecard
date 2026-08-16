@@ -1,4 +1,4 @@
-name: flowscorecard_build
+name: flow_scorecard_build
 
 on:
   push:
@@ -28,7 +28,6 @@ jobs:
         id: gitversion
         uses: gittools/actions/gitversion/execute@v4.4.2
         with:
-          useConfigFile: true
           configFilePath: src/GitVersion.yml
 
       - name: Setup .NET
@@ -37,11 +36,11 @@ jobs:
           dotnet-version: 10.x
 
       - name: Restore
-        run: dotnet restore src/FlowScorecard.slnx
+        run: dotnet restore src/Flow.Scorecard.slnx
 
       - name: Build and analyse
         run: >-
-          dotnet build src/FlowScorecard.slnx
+          dotnet build src/Flow.Scorecard.slnx
           --configuration ${{ env.BuildConfiguration }}
           --no-restore
           -p:Version=${{ steps.gitversion.outputs.AssemblySemVer }}
@@ -51,13 +50,13 @@ jobs:
 
       - name: Verify formatting
         run: >-
-          dotnet format src/FlowScorecard.slnx
+          dotnet format src/Flow.Scorecard.slnx
           --verify-no-changes
           --no-restore
 
       - name: Test with coverage
         run: >-
-          dotnet test src/FlowScorecard.slnx
+          dotnet test src/Flow.Scorecard.slnx
           --configuration ${{ env.BuildConfiguration }}
           --no-build
           --logger "trx;LogFileName=TestResults.xml"
@@ -76,14 +75,14 @@ jobs:
       - name: Publish coverage
         uses: codecov/codecov-action@v4
         with:
-          files: src/FlowScorecard.Engine.UnitTests/TestResults/coverage.opencover.xml
+          files: src/Flow.Scorecard.UnitTests/TestResults/coverage.opencover.xml
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: unit
 
       - name: Pack release
         if: github.event_name == 'release'
         run: >-
-          dotnet pack src/FlowScorecard.Engine/FlowScorecard.Engine.csproj
+          dotnet pack src/Flow.Scorecard/Flow.Scorecard.csproj
           --configuration ${{ env.BuildConfiguration }}
           --no-build
           --include-symbols

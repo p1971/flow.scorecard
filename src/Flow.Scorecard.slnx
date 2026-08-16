@@ -1,6 +1,6 @@
 <Solution>
   <Folder Name="/Samples/">
-    <Project Path="FlowScorecard.Samples.Console/FlowScorecard.Samples.Console.csproj" />
+    <Project Path="Flow.Scorecard.Samples.Console/Flow.Scorecard.Samples.Console.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path="../README.md" />
@@ -10,6 +10,6 @@
     <File Path="Directory.Packages.props" />
     <File Path="GitVersion.yml" />
   </Folder>
-  <Project Path="FlowScorecard.Engine/FlowScorecard.Engine.csproj" />
-  <Project Path="FlowScorecard.Engine.UnitTests/FlowScorecard.Engine.UnitTests.csproj" />
+  <Project Path="Flow.Scorecard/Flow.Scorecard.csproj" />
+  <Project Path="Flow.Scorecard.UnitTests/Flow.Scorecard.UnitTests.csproj" />
 </Solution>

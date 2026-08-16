@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace FlowScorecard.Engine.Extensions;
 
 /// <summary>
-/// Registers FlowScorecard services with a dependency injection container.
+/// Registers Flow.Scorecard services with a dependency injection container.
 /// </summary>
 public static class ServiceCollectionExtensions
 {

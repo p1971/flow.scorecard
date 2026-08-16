@@ -2,8 +2,8 @@
   <PropertyGroup>
     <Authors>Pete Robinson</Authors>
     <Description>A typed, fluent scorecard engine for .NET.</Description>
-    <Product>FlowScorecard</Product>
-    <PackageId>FlowScorecard.Engine</PackageId>
+    <Product>Flow.Scorecard</Product>
+    <PackageId>Flow.Scorecard</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/p1971/flow.scorecard</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -27,6 +27,6 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" Condition="Exists('$(MSBuildProjectDirectory)/../../.git/HEAD')" />
   </ItemGroup>
   <ItemGroup>
-    <InternalsVisibleTo Include="FlowScorecard.Engine.UnitTests" />
+    <InternalsVisibleTo Include="Flow.Scorecard.UnitTests" />
   </ItemGroup>
 </Project>

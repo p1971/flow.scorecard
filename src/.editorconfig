@@ -64,10 +64,10 @@ indent_size = 2
 [*.json]
 indent_size = 2
 
-[FlowScorecard.Engine.UnitTests/*.cs]
+[Flow.Scorecard.UnitTests/*.cs]
 dotnet_diagnostic.CA1515.severity = none
 dotnet_diagnostic.CA1849.severity = none
 dotnet_diagnostic.CA2007.severity = none
 
-[FlowScorecard.Samples.Console/*.cs]
+[Flow.Scorecard.Samples.Console/*.cs]
 dotnet_diagnostic.CA2007.severity = none

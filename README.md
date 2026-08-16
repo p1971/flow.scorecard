@@ -1,4 +1,4 @@
-# FlowScorecard
+# Flow.Scorecard
 
 [![MIT](https://badgen.net/badge/license/MIT/green)](LICENSE)
 
@@ -19,7 +19,7 @@ Rules run sequentially in registration order. A rule exception is captured in it
 Install the package:
 
 ```bash
-dotnet add package FlowScorecard.Engine
+dotnet add package Flow.Scorecard
 ```
 
 Define the DTO and scorecard:
@@ -91,7 +91,7 @@ ScorecardExecutionResult result = await registry.ExecuteAsync(
 
 ## Acting on a score
 
-FlowScorecard deliberately has no score-band or action model. Keep those application decisions with the caller:
+Flow.Scorecard deliberately has no score-band or action model. Keep those application decisions with the caller:
 
 ```csharp
 string nextAction = result.TotalScore switch
@@ -107,9 +107,9 @@ Check `result.Succeeded` before trusting the score as complete. Each `ScoringRul
 ## Building and testing
 
 ```bash
-dotnet build src/FlowScorecard.slnx
-dotnet test src/FlowScorecard.slnx
-dotnet run --project src/FlowScorecard.Samples.Console
+dotnet build src/Flow.Scorecard.slnx
+dotnet test src/Flow.Scorecard.slnx
+dotnet run --project src/Flow.Scorecard.Samples.Console
 ```
 
 ## Contributing
